@@ -1,0 +1,41 @@
+<h2>show post</h2>
+<%= @post.title %>
+<%= @post.description %>
+<h2>Comments</h2>
+<% @post.coments.each do |comment| %>
+  <p>
+    <b>Commenter:</b>
+    <%= comment.description %>
+      <%= link_to 'mostras', post_coments_path(comment)  %>
+    <%= link_to'edit',  edit_post_coment_path(comment.post, comment) %>
+    <%= link_to 'Destroy Comment', [comment.post, comment],
+               :confirm => 'Are you sure?',
+               :method => :delete %>
+      <%= form_for [comment, comment.replies.build] do |f| %>
+         <%= f.text_field :description %>
+         <%= f.submit "Submit", :disable_with => 'Submiting...' %>
+      <% end %>
+  </p>
+    <p>reply</p>
+    <% comment.replies.each do |reply| %>
+       <%= reply.description %>
+       <br>
+
+
+     <% end %>
+
+<% end %>
+
+<h2>Add a comment:</h2>
+<%= form_for([@post, @post.coments.build]) do |f| %>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to "edit", edit_post_path(@post) %>
+<%= link_to "delete", post_path(@post), method: :delete, data:{confirm:"desea eliminar"}%>

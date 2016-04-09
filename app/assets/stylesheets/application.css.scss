@@ -1,0 +1,99 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+$white: #fff;
+$highlight: #FF9C01;
+$dark: #2C3135;
+$light: #EDEFF5;
+
+.main-header{
+  header{
+    color: black;
+    background: #B1B1B1;
+  }
+}
+header{
+  .navbar{
+    padding: 2rem ;
+    .navbar-title{
+      font-weight: 700;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+    }
+    a{
+      border: 1px solid;
+      padding: .5rem 1rem;
+      border-radius: .5rem;
+      text-decoration: none;
+      text-transform: capitalize;
+      color: $white;
+    }
+    ul{
+      li{
+        list-style: none;
+        margin-left: 2rem;
+      }
+    }
+    .sign-up{
+      background: $highlight;
+      border: 0;
+      text-transform: capitalize;
+      &:hover{
+      background: darken($highlight, 5%);
+      }
+    }
+  }
+}
+
+.main-wrapper{
+  h1{
+    text-align: center;
+    text-transform: uppercase;
+    color: $dark;
+    font-weight: 700;
+    font-size: 3rem;
+  }
+}
+.pagination:before,
+.pagination:after {
+  content: “ “;
+  display: table;
+}
+
+.pagination:after {
+  clear: both;
+}
+
+.pagination {
+  text-align: center;
+  margin: 2rem 0;
+  a, .previous_page, .current, .next_page {
+    padding: 0.75rem 1rem;
+    margin: 0 .25rem;
+    border-radius: .15rem;
+    line-height: 20px;
+    text-decoration: none;
+    background-color: $light;
+    font-weight: 700;
+    font-size: .7rem;
+    font-style: normal;
+    color: $dark;
+    &:hover {
+      background: $highlight;
+      color: $white;
+    }
+  }
+  .disabled {
+    color: #C0C0C0;
+    &:hover {
+      color: #C0C0C0;
+    }
+  }
+  .current {
+    background: $highlight;
+    color: $white;
+  }
+}
+
+@import 'welcome';
+@import 'posts';

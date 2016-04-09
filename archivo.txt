@@ -1,0 +1,3 @@
+casa,ropa,2334444,eeeee
+silla,sss,emee,sssa
+caroo,dddd,ddddd,ddd

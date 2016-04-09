@@ -1,0 +1,22 @@
+
+<div class="container welcome-content">
+  <div class="row">
+    <div class="col-md-7 mailer">
+      <input type="email">
+      <a class="btn-mailer">Newsletter</a>
+    </div>
+    <div class="col-md-5 last-post">
+      <h1>Last Post</h1>
+      <hr>
+      <% @posts.each do |post| %>
+        <div class="title">
+          <%= post.title %>
+        </div>
+        <div class="data">
+          <%= time_ago_in_words(post.created_at) %>
+        </div>
+        <br>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<header>
+  <div class="navbar">
+    <div class="container-fluid">
+      <a class="navbar-title" href="#">Super Blog</a>
+      <ul class="navbar-nav navbar-right">
+        <li>
+          <%= link_to "Posts", posts_path %>
+        </li>
+        <li>
+          <%= link_to "Log in", new_user_session_path%>
+        </li>
+        <li>
+          <%= link_to "Sign up",  new_user_registration_path, class:"sign-up" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,23 @@
+<div class="main-wrapper ">
+  <h1>posts</h1>
+  <hr>
+  <div class="container post">
+    <div class="col-md-8 col-md-offset-2">
+
+  <% @posts.each do |post| %>
+    <%= post.title %>
+    <br>
+    <%= time_ago_in_words(post.created_at) %>
+    <hr>
+    <br>
+    <%= truncate(post.description.html_safe, length:250) %>
+    <br>
+  <% end %>
+  <br>
+  <div class="text-center">
+    <%= will_paginate @posts%>
+  </div>
+
+    </div>
+  </div>
+</div>
