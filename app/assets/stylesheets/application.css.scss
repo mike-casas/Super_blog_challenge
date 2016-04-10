@@ -1,11 +1,38 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 
 $white: #fff;
 $highlight: #FF9C01;
 $dark: #2C3135;
 $light: #EDEFF5;
 
+h1{
+  font-size: 3rem;
+}
+h2{
+  font-size:2rem;
+}
+h3{
+  font-size: 1.7rem;
+}
+h4{
+  font-size: 1.5rem;
+}
+h5{
+  font-size: 1.2rem;
+}
+
+.btn-highlight{
+  background:$highlight;
+  color: $white;
+  &:hover{
+      background: darken($highlight, 5%);
+      color: $white;
+    }
+}
 .main-header{
   header{
     color: black;
@@ -46,6 +73,7 @@ header{
 }
 
 .main-wrapper{
+  padding-bottom: 3rem;
   h1{
     text-align: center;
     text-transform: uppercase;
@@ -66,7 +94,7 @@ header{
 
 .pagination {
   text-align: center;
-  margin: 2rem 0;
+  margin: 1rem 0;
   a, .previous_page, .current, .next_page {
     padding: 0.75rem 1rem;
     margin: 0 .25rem;
@@ -95,5 +123,40 @@ header{
   }
 }
 
+
+
+/* IE 6 */
+* html footer {
+   position:absolute;
+   top:expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
+}
+footer{
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:40px;
+   width:100%;
+   background:rgba(255, 255,255,0.9);
+  hr{
+    margin: 0;
+  }
+  .copy{
+    margin-left: 2rem;
+    display: inline-block;
+    float: left;
+    padding: 1rem 0;
+  }
+  nav{
+    padding: 1rem 0;
+    float: right;
+    ul{
+      li{
+        list-style: none;
+        display: inline-block;
+        padding-right: 2rem;
+      }
+    }
+  }
+}
 @import 'welcome';
 @import 'posts';

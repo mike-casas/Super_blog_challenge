@@ -25,7 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'guard-livereload'
 gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.6'
-
+gem 'font-awesome-sass'
 gem 'will_paginate', '~> 3.0.6'
 
 # Use ActiveModel has_secure_password
