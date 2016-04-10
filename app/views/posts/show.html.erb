@@ -45,17 +45,21 @@
               <%= comment.description %>
               </div>
               <a class="reply" data-toggle="collapse" href="#reply_comment_<%= comment.id %>" aria-expanded="false" aria-controls="collapseExample">
-                <%= pluralize(comment.replies.count, "reply")%>
+                <span id="reply_count_<%= comment.id %>">
+                  <%= pluralize(comment.replies.count, "reply")%>
+                </span>
                             </a>
               <div class="collapse" id="reply_comment_<%=comment.id%>">
-                <div class="reply-container">
-                  <% comment.replies.each do |reply| %>
-                  <div class="content">
-                    <%= reply.description %> <span><%= reply.user.name %></span>
+                <div class="reply-container" >
+                  <div id="replies_<%= comment.id%>">
+                    <% comment.replies.each do |reply| %>
+                    <div class="content">
+                      <%= reply.description %> <span><%= reply.user.name %></span>
+                    </div>
+                    <% end %>
                   </div>
-                  <% end %>
-                  <%= form_for [comment, comment.replies.build] do |f| %>
-                                <%= f.text_field :description %>
+                  <%= form_for [comment, comment.replies.build], remote: true do |f| %>
+                                <%= f.text_field :description , id:"input_reply_#{comment.id}"%>
                     <%= f.submit "Reply" %>
                   <% end %>
                 </div>

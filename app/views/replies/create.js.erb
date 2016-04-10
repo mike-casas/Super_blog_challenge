@@ -1,0 +1,4 @@
+
+$('#replies_<%=@coment.id%>').append('<%= j render 'replies/rowreply' %>')
+$('#reply_count_<%= @coment.id %>').html('<%= pluralize(@coment.replies.count, "reply")%>')
+$('#input_reply_<%= @coment.id %>').val('')
