@@ -1,9 +1,0 @@
-<h1>Coments#index</h1>
-<p>Find me in app/views/coments/index.html.erb</p>
-
-<% @post.coments.each do |coment| %>
-  <%= coment.description %>
-  <%= link_to 'Destroy Comment', [coment.post, coment],
-               :confirm => 'Are you sure?',
-               :method => :delete %>
-<% end %>

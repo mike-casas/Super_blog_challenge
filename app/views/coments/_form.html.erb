@@ -1,0 +1,9 @@
+<%= form_for @coment , remote: true do |f| %>
+  <div class="form-group">
+    <%= f.text_area :description, class:"form-control"  %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Send",class:"btn btn-block btn-highlight"%>
+  </div>
+<% end %>
+

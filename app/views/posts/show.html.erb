@@ -26,26 +26,28 @@
   <!-- comentarios -->
 
       <h3>Comments</h3>
-      <div class="comments">
+      <div class="comments" id="container_comment">
         <% @post.coments.each do |comment| %>
-          <div class="panel panel-default">
+          <div class="panel panel-default" id="comment_<%=comment.id%>">
             <div class="panel-heading">
               <div class="date">Commenter: <%= comment.user.name%>, <%= time_ago_in_words(comment.created_at) %>
               </div>
               <div class="actions-comment">
                 <% if user_owner(comment.user) %>
-                  <%= link_to '<i class="fa fa-pencil-square-o"></i>'.html_safe,  edit_post_coment_path(comment.post, comment) %>
-                  <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, [comment.post, comment],dara:{confirm:'Are you sure?'},
+                  <%= link_to '<i class="fa fa-pencil-square-o"></i>'.html_safe,  edit_post_coment_path(comment.post, comment) , remote: true%>
+                  <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, [comment.post, comment],remote: true ,data:{confirm:'Are you sure?'},
                              :method => :delete %>
                 <% end %>
               </div>
             </div>
             <div class="panel-body">
+              <div id="content_comment_<%=comment.id%>">
               <%= comment.description %>
-              <a class="reply" data-toggle="collapse" href="#comment_<%= comment.id %>" aria-expanded="false" aria-controls="collapseExample">
+              </div>
+              <a class="reply" data-toggle="collapse" href="#reply_comment_<%= comment.id %>" aria-expanded="false" aria-controls="collapseExample">
                 <%= pluralize(comment.replies.count, "reply")%>
                             </a>
-              <div class="collapse" id="comment_<%=comment.id%>">
+              <div class="collapse" id="reply_comment_<%=comment.id%>">
                 <div class="reply-container">
                   <% comment.replies.each do |reply| %>
                   <div class="content">
@@ -67,9 +69,9 @@
       <% if user_signed_in? %>
         <div class="new-comment">
           <h3>Add a comment:</h3>
-          <%= form_for([@post, @post.coments.build]) do |f| %>
+          <%= form_for([@post, @post.coments.build], remote: true) do |f| %>
             <div class="field">
-              <%= f.text_area :description  %>
+              <%= f.text_area :description , id:'textarea_newcomment' %>
             </div>
             <div class="actions">
               <%= f.submit "Send",class:"btn"%>
@@ -77,6 +79,7 @@
           <% end %>
         </div>
       <% end %>
+      <%= render 'coments/comment_modal' %>
     </div>
   </div>
 </div>

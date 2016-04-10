@@ -1,0 +1,34 @@
+<div class="panel panel-default" id="comment_<%=@coment.id%>">
+  <div class="panel-heading">
+    <div class="date">Commenter: <%= @coment.user.name%>, <%= time_ago_in_words(@coment.created_at) %>
+    </div>
+    <div class="actions-comment">
+      <% if user_owner(@coment.user) %>
+        <%= link_to '<i class="fa fa-pencil-square-o"></i>'.html_safe,  edit_post_coment_path(@coment.post, @coment) , remote: true%>
+        <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, [@coment.post, @coment],remote: true ,data:{confirm:'Are you sure?'},
+                   :method => :delete %>
+      <% end %>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div id="content_comment_<%=@coment.id%>">
+    <%= @coment.description %>
+    </div>
+    <a class="reply" data-toggle="collapse" href="#reply_comment_<%= @coment.id %>" aria-expanded="false" aria-controls="collapseExample">
+      <%= pluralize(@coment.replies.count, "reply")%>
+                  </a>
+    <div class="collapse" id="reply_comment_<%=@coment.id%>">
+      <div class="reply-container">
+        <% @coment.replies.each do |reply| %>
+        <div class="content">
+          <%= reply.description %> <span><%= reply.user.name %></span>
+        </div>
+        <% end %>
+        <%= form_for [@coment, @coment.replies.build] do |f| %>
+                      <%= f.text_field :description %>
+          <%= f.submit "Reply" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

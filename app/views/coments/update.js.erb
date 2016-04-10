@@ -1,0 +1,7 @@
+<% if @coment.errors.empty? %>
+  $('.alert-success').html("El producto ha sido creado con éxito").show();
+  $('#content_comment_<%= @coment.id%>').html('<%= @coment.description%>')
+  $('#comment_modal').modal('hide');
+<% else %>
+  alert('<%= @coment.errors.full_messages[0] %>');
+<% end %>
