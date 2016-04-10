@@ -63,16 +63,20 @@
 
   .comments{
     .panel-heading{
+      padding: .5rem;
       .date{
         display: inline-block;
+        margin: 0;
+        font-size: 1.2rem;
       }
       .actions-comment{
         display: inline-block;
+        float: right;
       }
     }
     .panel-body{
       .reply{
-        display: inline-block;
+        display: block;
         margin-top: 1em;
         padding: .1em 2em;
         border: 1px solid;
@@ -86,6 +90,11 @@
           background: lighten($light, 3.5%);
           margin-bottom: .5rem;
           padding: .5em;
+          span{
+            float: right;
+            font-size: 1.3rem;
+            color: #c0c0c0;
+          }
         }
         input[type="text"]{
           width: 85%;

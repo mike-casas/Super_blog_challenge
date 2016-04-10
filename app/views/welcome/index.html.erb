@@ -10,7 +10,8 @@
       <hr>
       <% @posts.each do |post| %>
         <div class="title">
-          <%= post.title %>
+          <%= link_to post.title, post_path(post) %>
+
         </div>
         <div class="data">
           <%= time_ago_in_words(post.created_at) %>

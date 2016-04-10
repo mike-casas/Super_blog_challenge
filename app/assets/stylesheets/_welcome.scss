@@ -46,9 +46,12 @@
       margin: 0 0 2rem 0;
     }
     .title{
+      a{
       text-transform: uppercase;
       color: $white;
       margin: 0;
+      text-decoration: none;
+      }
     }
     .data{
       margin: 0;

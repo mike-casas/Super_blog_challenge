@@ -18,9 +18,4 @@
 //= require_tree .
 
 
- tinyMCE.init({
-    mode: 'textareas',
-    theme: 'advanced',
-    theme_advanced_toolbar_location : "top",
-    theme_advanced_buttons1 : "bold,italic,underline,separator,justifyleft,justifycenter,justifyright, justifyfull,forecolor,backcolor,formatselect,fontselect,fontsizeselect, link,unlink, image"
-  });
+

@@ -3,77 +3,80 @@
   <hr>
   <div class="container post-show">
     <div class="col-md-8 col-md-offset-2">
-    <div class="title">
-      <span>
-        <%= @post.title %>
-      </span>
-      <hr>
-    </div>
-    <div class="content">
-      <%= @post.description.html_safe %>
-    </div>
-    <div class="date">
-      <span>Autor: <%=  @post.user.name %>, </span><%= time_ago_in_words(@post.created_at) %>
-    </div>
-    <% if user_owner(@post.user) %>
-    <hr>
-      <div class="actions">
-        <%= link_to "editar", edit_post_path(@post)  %>
-        <%= link_to "eliminar", post_path(@post), method: :delete, data: {confirm: "You want delete this post"}  %>
+      <div class="title">
+        <span>
+          <%= @post.title %>
+        </span>
+        <hr>
       </div>
-    <hr>
-    <% end %>
-<!-- comentarios -->
+      <div class="content">
+        <%= @post.description.html_safe %>
+      </div>
+      <div class="date">
+        <span>Autor: <%=  @post.user.name %>, </span><%= time_ago_in_words(@post.created_at) %>
+      </div>
+      <% if user_owner(@post.user) %>
+      <hr>
+        <div class="actions">
+          <%= link_to "editar", edit_post_path(@post)  %>
+          <%= link_to "eliminar", post_path(@post), method: :delete, data: {confirm: "You want delete this post"}  %>
+        </div>
+      <hr>
+      <% end %>
+  <!-- comentarios -->
 
-    <h3>Comments</h3>
-    <div class="comments">
-      <% @post.coments.each do |comment| %>
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <div class="date">Commenter: <%= comment.user.name %></div>
-            <div class="actions-comment">
-              <%= link_to'edit',  edit_post_coment_path(comment.post, comment) %>
-              <%= link_to 'Destroy Comment', [comment.post, comment],
-                         :confirm => 'Are you sure?',
-                         :method => :delete %>
+      <h3>Comments</h3>
+      <div class="comments">
+        <% @post.coments.each do |comment| %>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="date">Commenter: <%= comment.user.name%>, <%= time_ago_in_words(comment.created_at) %>
+              </div>
+              <div class="actions-comment">
+                <% if user_owner(comment.user) %>
+                  <%= link_to '<i class="fa fa-pencil-square-o"></i>'.html_safe,  edit_post_coment_path(comment.post, comment) %>
+                  <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, [comment.post, comment],dara:{confirm:'Are you sure?'},
+                             :method => :delete %>
+                <% end %>
+              </div>
+            </div>
+            <div class="panel-body">
+              <%= comment.description %>
+              <a class="reply" data-toggle="collapse" href="#comment_<%= comment.id %>" aria-expanded="false" aria-controls="collapseExample">
+                <%= pluralize(comment.replies.count, "reply")%>
+                            </a>
+              <div class="collapse" id="comment_<%=comment.id%>">
+                <div class="reply-container">
+                  <% comment.replies.each do |reply| %>
+                  <div class="content">
+                    <%= reply.description %> <span><%= reply.user.name %></span>
+                  </div>
+                  <% end %>
+                  <%= form_for [comment, comment.replies.build] do |f| %>
+                                <%= f.text_field :description %>
+                    <%= f.submit "Reply" %>
+                  <% end %>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="panel-body">
-            <%= comment.description %>
-            <br>
-            <a class="reply" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-              4 Replies
-            </a>
-            <div class="collapse" id="collapseExample">
-              <div class="reply-container">
-                <% comment.replies.each do |reply| %>
-                <div><%= reply.user.name %></div>
-                <div class="content">
-                  <%= reply.description %>
-                </div>
-                <% end %>
-                <%= form_for [comment, comment.replies.build] do |f| %>
-                              <%= f.text_field :description %>
-                  <%= f.submit "Reply" %>
-               <% end %>
-              </div>
-          </div>
+        <% end %>
+      </div>
+
+   <!-- form new comment -->
+      <% if user_signed_in? %>
+        <div class="new-comment">
+          <h3>Add a comment:</h3>
+          <%= form_for([@post, @post.coments.build]) do |f| %>
+            <div class="field">
+              <%= f.text_area :description  %>
+            </div>
+            <div class="actions">
+              <%= f.submit "Send",class:"btn"%>
+            </div>
+          <% end %>
         </div>
       <% end %>
-    </div>
-    <% if user_signed_in? %>
-    <div class="new-comment">
-      <h3>Add a comment:</h3>
-      <%= form_for([@post, @post.coments.build]) do |f| %>
-        <div class="field">
-          <%= f.text_area :description  %>
-        </div>
-        <div class="actions">
-          <%= f.submit "Send",class:"btn"%>
-        </div>
-      <% end %>
-    </div>
-    <% end %>
     </div>
   </div>
 </div>
