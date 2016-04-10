@@ -9,9 +9,7 @@
 <body>
 <div class="welcome_primary">
   <%= render 'layouts/navbar' %>
-<% flash.each do |key, message| %>
-<%= message%>
-<% end -%>
+<%= render 'layouts/flash_message' %>
 <%= yield %>
 </div>
 </body>

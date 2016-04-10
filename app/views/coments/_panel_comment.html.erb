@@ -29,7 +29,7 @@
             <% end %>
         </div>
         <%= form_for [@coment, @coment.replies.build], remote: true do |f| %>
-                      <%= f.text_field :description,id:"input_reply_#{@coment.id}" %>
+                      <%= f.text_field :description,id:"input_reply_#{@coment.id}" , required: true, minlength:"4"%>
           <%= f.submit "Reply" %>
         <% end %>
       </div>

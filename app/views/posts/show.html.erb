@@ -59,7 +59,7 @@
                     <% end %>
                   </div>
                   <%= form_for [comment, comment.replies.build], remote: true do |f| %>
-                                <%= f.text_field :description , id:"input_reply_#{comment.id}"%>
+                                <%= f.text_field :description , id:"input_reply_#{comment.id}",required: true, minlength:"4"%>
                     <%= f.submit "Reply" %>
                   <% end %>
                 </div>
@@ -75,7 +75,7 @@
           <h3>Add a comment:</h3>
           <%= form_for([@post, @post.coments.build], remote: true) do |f| %>
             <div class="field">
-              <%= f.text_area :description , id:'textarea_newcomment' %>
+              <%= f.text_area :description , id:'textarea_newcomment' , required: true, minlength:"4"%>
             </div>
             <div class="actions">
               <%= f.submit "Send",class:"btn"%>
