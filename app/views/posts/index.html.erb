@@ -8,11 +8,12 @@
           <%= link_to post.title, post_path(post) %>
         </div>
         <span class="date">
-          <%= time_ago_in_words(post.created_at) %>
+          <span>Creado por: <%= post.user.name %>, </span><%= time_ago_in_words(post.created_at) %>
         </span>
         <hr>
         <div class="content">
-          <%= truncate(post.description.html_safe, length:250) %>
+          <%= truncate(strip_tags(post.description.html_safe), length:250)%>
+
         </div>
       <% end %>
       <div class="text-center">

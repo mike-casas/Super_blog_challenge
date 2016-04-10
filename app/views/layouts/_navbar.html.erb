@@ -3,15 +3,26 @@
     <div class="container-fluid">
       <%= link_to "Super Blog", root_path,class:"navbar-title"  %>
       <ul class="navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to "New Posts", new_post_path, class:"sign-up" %>
+          </li>
+        <% end %>
         <li>
           <%= link_to "Posts", posts_path %>
         </li>
+        <% if user_signed_in? %>
+          <li>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete%>
+          </li>
+        <% else %>
         <li>
           <%= link_to "Log in", new_user_session_path%>
         </li>
         <li>
           <%= link_to "Sign up",  new_user_registration_path, class:"sign-up" %>
         </li>
+        <% end %>
       </ul>
     </div>
   </div>

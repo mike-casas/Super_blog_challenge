@@ -1,5 +1,5 @@
 class ComentsController < ApplicationController
-
+before_action :authenticate_user!
   def index
     @post= Post.find(params[:post_id])
   end
@@ -32,7 +32,7 @@ class ComentsController < ApplicationController
 
   def comments_params
        params.require(:coment).permit(:description)
-       #.merge(user: current_user)
+       .merge(user: current_user)
      end
 
 

@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, except: [:index,:show]
   before_action :find_post, only: [:show,:edit,:update,:destroy]
   def index
    @posts= Post.all.order('created_at DESC').paginate(:page => params[:page], :per_page => 3)
@@ -47,6 +48,7 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title,:description)
+    .merge(user_id: current_user.id)
   end
   def find_post
     @post= Post.find(params[:id])

@@ -1,5 +1,5 @@
 class RepliesController < ApplicationController
-
+ before_action :authenticate_user!
   def index
 
   end
@@ -22,5 +22,6 @@ class RepliesController < ApplicationController
   private
   def params_reply
     params.require(:reply).permit(:description)
+    .merge(user: current_user)
   end
 end
