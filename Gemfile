@@ -29,6 +29,10 @@ gem 'font-awesome-sass'
 gem 'will_paginate', '~> 3.0.6'
 
 gem 'tinymce-rails'
+gem 'dotenv-rails', :groups => [:development]
+
+#use for mailchimp
+gem "gibbon"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

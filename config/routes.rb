@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'welcome/index'
   root 'welcome#index'
+  post 'welcome/mailist_signup'
   resources :posts do
     resources :coments
   end

@@ -2,8 +2,15 @@
 <div class="container welcome-content">
   <div class="row">
     <div class="col-md-7 mailer">
-      <input type="email">
-      <a class="btn-mailer">Newsletter</a>
+      <%= form_tag welcome_mailist_signup_path, role: :form, :remote=>true do %>
+          <div id="signup">
+            <%= email_field(:email, :email, {id: "signup_email", placeholder: "email address"}) %>
+            <span>
+              <button type="submit" class='btn-mailer'>Newsletter</button>
+            <small id="signup-message"></small>
+            </span>
+            </div>
+      <% end %>
     </div>
     <div class="col-md-5 last-post">
       <h1>Last Post</h1>
